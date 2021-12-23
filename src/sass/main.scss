@@ -1,0 +1,57 @@
+@import './example';
+
+.search-form {
+    background-color: slateblue;
+    text-align: center;
+    padding: 10px 0;
+}
+
+button {
+    border-radius: 2px;
+    font-weight: bold;
+    background-color:white;
+    border: 1px solid royalblue;
+    cursor: pointer;
+}
+
+.photo-card {
+    width: 100%;
+    box-shadow:1px 1px 1px 1px silver;
+    border-radius:0 0 5px 5px;
+    margin-bottom: 5px;
+}
+
+.gallery {
+    padding: 10px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 10px 5px;
+}
+
+@media screen and (min-width:1024px) {
+    .photo-card{
+        width:calc((100% - 50px) / 4);
+        display: inline-block;
+        vertical-align: middle;
+        
+    }
+    .gallery{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+}
+
+img {
+    width:100%;
+}
+
+.load-more {
+    margin: 10px;
+    background-color:slateblue;
+    padding: 10px 15px;
+}
