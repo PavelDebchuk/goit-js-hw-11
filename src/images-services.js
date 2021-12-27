@@ -10,6 +10,7 @@ export default class NewsApiService{
             .then(r => r.json())
             .then(data => {
                 this.incrementPage();
+                console.log(this);
                 return data.hits;
             });
     }
@@ -30,23 +31,3 @@ export default class NewsApiService{
         this.searchQuery = newQuery;
     }
 }
-
-
-
-
-
-// fetchArticles(searchQuery){
-//     fetchImg()
-//         .then(renderImgCard)
-//         .catch(error => console.log(error));
-    
-//     function fetchImg() {
-//         return fetch(`https://pixabay.com/api/?key=24907304-6f88a85793adc81b0b0dcb604&q=${searchQuery}&image_type=photo&per_page=${perPage}&orientation=horizontal`)
-//         .then(response => {
-//         return response.json();
-//         },
-//         )
-//     }
-    
-// }
-// }

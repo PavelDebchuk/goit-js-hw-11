@@ -1,6 +1,8 @@
 @import './example';
 
 .search-form {
+    position: sticky;
+    top: 0;
     background-color: slateblue;
     text-align: center;
     padding: 10px 0;
@@ -51,7 +53,12 @@ img {
 }
 
 .load-more {
-    margin: 10px;
+    margin: 10px auto;
     background-color:slateblue;
     padding: 10px 15px;
+    display: block;
+}
+
+.display-none {
+    visibility: hidden;
 }

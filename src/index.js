@@ -9,6 +9,9 @@ const refs = {
     cardContainer: document.querySelector('.gallery'),
 }
 
+const loadMoreBtn = document.querySelector('.load-more');
+loadMoreBtn.classList.add("display-none");
+
 let nameInput = document.querySelector("[name=searchQuery]")
 const newsApiService = new NewsApiService();
 
@@ -16,7 +19,7 @@ refs.searschForm.addEventListener('click', onSearch);
 
 function onSearch(e) {
     e.preventDefault();
-
+    clearHitsContainer();
     newsApiService.query = nameInput.value;
     newsApiService.resetPage();
     newsApiService.fetchArticles().then(appendHitsMarkup);
@@ -24,51 +27,19 @@ function onSearch(e) {
 
 
 function appendHitsMarkup(hits) {
+    if (hits == 0){
+        Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
+    }
     refs.cardContainer.insertAdjacentHTML('beforeend', countryCardTpl(hits)
     );
-
-    const loadMoreBtn = document.querySelector('.load-more');
+    loadMoreBtn.classList.remove("display-none");
     loadMoreBtn.addEventListener('click', onLoadMore);
 }
 
 function onLoadMore() {
-    console.log('click')
     newsApiService.fetchArticles().then(appendHitsMarkup);
 }
 
-
-
-
-
-
-
-
-
-// function buttonResalt(event){
-//     fetchImg()
-//         .then(renderImgCard)
-//         .catch(error => console.log(error));
-    
-//         function fetchImg() {
-//         return fetch(`https://pixabay.com/api/?key=24907304-6f88a85793adc81b0b0dcb604&q=${name}&image_type=photo&per_page=40&orientation=horizontal`)
-//         .then(response => {
-//             return response.json();
-//         },
-//         )
-//     }
-
-
-//     function renderImgCard(names) {
-//         let markup = countryCardTpl(names);
-//         refs.cardContainer.innerHTML = markup;
-
-//         const readMore = document.querySelector('.load-more');
-//         readMore.addEventListener('click', addResalt);
-
-//         function addResalt(){
-//             // if(perPage > totalHits){
-//                 Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
-//             // }
-//             // renderImgCard()
-//         }
-//     }}
+function clearHitsContainer() {
+    refs.cardContainer.innerHTML = '';
+}
